@@ -1,0 +1,4 @@
+mad921 is WITHDRAWN. Do not rebuild it.
+
+build-mad921.py on the Desktop will regenerate the application into this folder
+if it is run. Do not run it unless the withdrawal is being deliberately reversed.
