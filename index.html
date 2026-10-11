@@ -1,0 +1,100 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Service withdrawn</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#f6f7f9; --panel:#fff; --ink:#1f2733; --muted:#6b7684; --line:#e4e7ec;
+    --amber:#8a5a12; --amber-bg:#fdf6e7; --amber-line:#f0dcae;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1420; --panel:#161d2b; --ink:#e7ebf2; --muted:#98a2b3; --line:#28303f;
+           --amber:#e7b467; --amber-bg:#2c2214; --amber-line:#4a3a1c; }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);line-height:1.55;
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased;padding:34px 20px 70px}
+  .wrap{max-width:660px;margin:0 auto}
+  .mark{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+        background:var(--amber-bg);border:1px solid var(--amber-line);color:var(--amber)}
+  h1{font-size:23px;letter-spacing:-.02em;margin:20px 0 6px}
+  .lede{color:var(--muted);font-size:15px;margin:0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin-top:26px}
+  h2{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+  h3{font-size:14.5px;margin:20px 0 4px}
+  h3:first-of-type{margin-top:0}
+  p{margin:0 0 10px;font-size:14px}
+  ul{margin:0 0 10px;padding-left:20px;font-size:14px}
+  li{margin-bottom:5px}
+  .meta{display:flex;flex-wrap:wrap;gap:0 28px;font-size:13px;color:var(--muted);
+        border-top:1px solid var(--line);margin-top:20px;padding-top:16px}
+  .meta div{min-width:150px}
+  .meta b{display:block;color:var(--ink);font-weight:600;font-size:13px}
+  .foot{color:var(--muted);font-size:12.5px;margin-top:26px;text-align:center}
+  code{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12.5px}
+</style>
+
+<div class="wrap">
+  <div class="mark">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+      <rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+    </svg>
+  </div>
+
+  <h1>This service has been shut down</h1>
+  <p class="lede">Access to this application has been withdrawn as a security precaution. It is not available, and it will not be restored at this address.</p>
+
+  <div class="card">
+    <h2>Notice of withdrawal</h2>
+
+    <h3>1. Scope</h3>
+    <p>This notice applies to the behaviour-tracking application formerly published at this address (“the Service”). The Service has been decommissioned in full. All functionality — including sign-in — has been removed, and any copy of the Service held in a browser cache is invalidated automatically on first visit to this page.</p>
+
+    <h3>2. Reason</h3>
+    <p>The Service was withdrawn by its operator following a review of how it was reached and who could reach it. The decision was precautionary. It was taken because the Service handled records relating to identifiable children, and because the operator judged that the access arrangement around it was no longer adequate for that responsibility. Withdrawal was chosen over continued operation deliberately: where the subject of the records is a child, the safer action is to stop.</p>
+
+    <h3>3. Records</h3>
+    <p>This build of the Service held its records in the browser of the device that entered them. It was published without any synchronisation, without any configured endpoint, and without any analytics or reporting component. On that basis:</p>
+    <ul>
+      <li>no records entered into this build were transmitted to the operator or to any third party;</li>
+      <li>no records were stored on any server under the operator's control;</li>
+      <li>any records that exist remain only in the local storage of the browser that created them, and are not retrievable by the operator.</li>
+    </ul>
+    <p>Anyone holding such a device who wishes to dispose of those records may do so by clearing site data for this address in their browser settings. No request to the operator is required, and the operator cannot perform this on a user's behalf.</p>
+
+    <h3>4. Effect</h3>
+    <p>Continued or attempted use of the Service at this address is not supported. Credentials previously issued for the Service are void and confer no access. This page replaces the Service and may itself be removed without further notice.</p>
+
+    <h3>5. Successor service</h3>
+    <p>No successor is offered at this address, and no redirection is provided. Anyone who was directed here in error should return to whoever provided the link rather than seek access by other means.</p>
+
+    <h3>6. Contact</h3>
+    <p>Questions about this notice, including requests relating to records, should be directed to the person who provided access to the Service. The operator does not monitor this address for correspondence.</p>
+
+    <div class="meta">
+      <div><b>Status</b>Withdrawn</div>
+      <div><b>Effective</b>9 October 2026</div>
+      <div><b>Reference</b>MAD921-WD-01</div>
+      <div><b>Restoration</b>Not planned</div>
+    </div>
+  </div>
+
+  <p class="foot">If this page is cached or stale, clear site data for this address and reload.</p>
+</div>
+
+<script>
+// Tear down anything the previous version installed on this device.
+(async () => {
+  try {
+    if ("serviceWorker" in navigator) {
+      for (const r of await navigator.serviceWorker.getRegistrations()) await r.unregister();
+      // re-register the kill switch so a browser holding the old worker drops its caches too
+      try { await navigator.serviceWorker.register("sw.js"); } catch (e) {}
+    }
+    if (window.caches) for (const k of await caches.keys()) await caches.delete(k);
+  } catch (e) {}
+})();
+</script>
